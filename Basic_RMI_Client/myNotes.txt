@@ -1,0 +1,54 @@
+pour que le client puisse utiliser  les methodes offertes par le serveur il a besoin de :
+	1-les interfaces
+	2-les entiites
+=> soit: 
+	1-.on copier/coller tout simplement les classes 'entities' et les 'interfaces'
+	2-on export un jar(containing only what the client need :entities, interfaces ) du pojet serveur et on le 'add external jars'  dans le projet client
+	3-
+
+	
+	
+	
+	
+	
+1-projet java : server
+	1-creer l'interface 'IBanqueRemote' :
+		1-extends 'Remote' du package 'rmi'
+		2-definir les methodes, qui(toutes) doivent 'throws RemoteException'
+	2-les entites:
+		1- inpmlements  'Serializable' de 'java.io'
+		2-const, getters,setters
+	3-l'implementaion de l'interface( service, comportement) :
+		1-extends '' : 'le skeleton' : 
+			-obj qui definit un service d'ecoute(serveur multithread)  pour acceder a l'obj (service) a distance
+			-y a plusieurs implementation de ce skeleton:
+				- 'UnicastRemoteObject'
+				- ...
+		2- implements 'IBanqueRemote'
+		3- implemente les methodes de l'interface 'IBanqueRemote'
+		4- Constructeur 
+			-leve l'exception 'RemoteException'
+			-on peut fixer le port f constructeur, ou il va etre gener auto
+			==>
+	4-Server
+2-projet java : client (autre entreprise par exxemple)
+	1-add jar du server
+	2-(de type 'Remote' donc on fait un cast ) stub : Naming.lookup("rmi://ip:port/nomObj")
+	3-catch exceptions : MalFormed, Remote, NotBound..
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
